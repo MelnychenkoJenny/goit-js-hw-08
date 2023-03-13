@@ -23,7 +23,7 @@ function onFormSubmit(event) {
   event.currentTarget.reset();
   localStorage.removeItem(STORAGE_KEY);
   console.log(formData);
-  formData = {};
+  // formData = {};
 }
 
 function onTakeInputValue(event) {
@@ -33,13 +33,14 @@ function onTakeInputValue(event) {
 }
 
 function populateFormSubmit() {
-  const savedMessageJson = localStorage.getItem(STORAGE_KEY);
+  let savedMessageJSON = localStorage.getItem(STORAGE_KEY);
   try {
-    if (savedMessageJson) {
-      formData = JSON.parse(savedMessageJson);
-      Object.entries(formData).forEach(
-        ([key, value]) => (feedbackForm[key].value = value)
-      );
+    if (savedMessageJSON) {
+      savedMessageJSON = JSON.parse(savedMessageJSON);
+      Object.entries(savedMessageJSON).forEach(
+        ([key, value]) => {formData[key] = value;
+          feedbackForm[key].value = value}
+      ); 
     }
   } catch (error) {
     console.log(error.name);
