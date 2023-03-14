@@ -6,7 +6,6 @@ let formData = {};
 const feedbackForm = document.querySelector('.feedback-form');
 
 populateFormSubmit();
-
 feedbackForm.addEventListener('submit', onFormSubmit);
 feedbackForm.addEventListener('input', throttle(onTakeInputValue, 500));
 
@@ -27,7 +26,7 @@ function onFormSubmit(event) {
 }
 
 function onTakeInputValue(event) {
-  formData[event.target.name] = event.target.value;
+  formData[event.target.name] = event.target.value.trim();
   const formDataJson = JSON.stringify(formData);
   localStorage.setItem(STORAGE_KEY, formDataJson);
 }

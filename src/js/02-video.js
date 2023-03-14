@@ -6,8 +6,8 @@ const iframePlayer = new Player(iframe);
 
 iframePlayer.on('timeupdate', throttle(onTimeUpdate, 1000));
 
-function onTimeUpdate(event) {
-    const timeValue = event.seconds;
+function onTimeUpdate(data) {
+    const timeValue = data.seconds;
     localStorage.setItem(STORAGE_KEY_CURRENT_TIME, timeValue);
 }
 
